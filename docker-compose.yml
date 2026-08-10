@@ -1,6 +1,6 @@
 services:
   wordpress:
-    image: wordpress:7.0.2-php8.4-apache
+    image: wordpress:7.0.3-php8.4-apache
     depends_on:
       db:
         condition: service_healthy
@@ -17,6 +17,7 @@ services:
         define('WP_SITEURL', '${WP_SITE_URL:-http://localhost:8080}');
     volumes:
       - wordpress_data:/var/www/html
+      - ./web/.htaccess:/var/www/html/.htaccess
 
   db:
     image: mysql:8.0.39
